@@ -1,5 +1,4 @@
 .navbar__section {
-  //   border: 2px solid red;
   padding: 1rem 0;
 
   .page-navbar {
@@ -9,18 +8,16 @@
       justify-content: space-between;
 
       .nav-logo {
-        // border: 2px solid blue;
         a {
           font-size: 2.4rem;
           font-family: "CB";
           font-weight: 900;
           letter-spacing: -0.084rem;
-          color: var(--grey-800);
+          color: var(--grey-0);
         }
       }
 
       .nav {
-        // border: 2px solid green;
         .nav-list {
           display: flex;
           align-items: center;
@@ -32,26 +29,27 @@
               font-size: 1.14rem;
               font-family: "RR";
               font-weight: 500;
-              color: var(--grey-700);
-              letter-spacing: 0.05rem;
-              padding: 0.3rem 0;
+              color: var(--grey-0);
+              letter-spacing: 0.09rem;
+              padding: 0.38rem 0;
               position: relative;
 
               &:hover {
                 font-family: "RR";
                 font-weight: 900;
-                color: var(--grey-900);
+                color: var(--grey-0);
 
                 &::after {
                   content: "";
                   position: absolute;
                   width: 30px;
-                  height: 2.5px;
+                  height: 1.8px;
+                  border-radius: 50px;
                   left: 0;
                   right: 0;
                   bottom: 0;
                   margin: 0 auto;
-                  background-color: var(--grey-800);
+                  background-color: var(--grey-200);
                 }
               }
             }
