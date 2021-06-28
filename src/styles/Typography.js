@@ -1,52 +1,40 @@
 import { createGlobalStyle } from "styled-components";
-import MontserratBold from "../assets/fonts/Montserrat-Bold.ttf";
-import MontserratMedium from "../assets/fonts/Montserrat-Medium.ttf";
-import MontserratRegular from "../assets/fonts/Montserrat-Regular.ttf";
-import MontserratSemiBold from "../assets/fonts/Montserrat-SemiBold.ttf";
-import PoppinsBold from "../assets/fonts/Poppins-Bold.ttf";
-import PoppinsMedium from "../assets/fonts/Poppins-Medium.ttf";
-import PoppinsRegular from "../assets/fonts/Poppins-Regular.ttf";
-import PoppinsSemiBold from "../assets/fonts/Poppins-SemiBold.ttf";
+import CascadiaMonoBold from "../assets/fonts/CascadiaMono-Bold.ttf";
+import CascadiaMonoRegular from "../assets/fonts/CascadiaMono-Regular.ttf";
+import CascadiaMonoSemiBold from "../assets/fonts/CascadiaMono-SemiBold.ttf";
+import RobotoBold from "../assets/fonts/Roboto-Bold.ttf";
+import RobotoMedium from "../assets/fonts/Roboto-Medium.ttf";
+import RobotoRegular from "../assets/fonts/Roboto-Regular.ttf";
 
 const Typography = createGlobalStyle`
   @font-face {
-    font-family: 'MB';
-    src: url(${MontserratBold});
+    font-family: 'CB';
+    src: url(${CascadiaMonoBold});
     font-style: normal;
   }
   @font-face {
-    font-family: 'MSB';
-    src: url(${MontserratSemiBold});
+    font-family: 'CSB';
+    src: url(${CascadiaMonoSemiBold});
     font-style: normal;
   }
   @font-face {
-    font-family: 'MM';
-    src: url(${MontserratMedium});
+    font-family: 'CR';
+    src: url(${CascadiaMonoRegular});
     font-style: normal;
   }
   @font-face {
-    font-family: 'MR';
-    src: url(${MontserratRegular});
+    font-family: 'RB';
+    src: url(${RobotoBold});
     font-style: normal;
   }
   @font-face {
-    font-family: 'PB';
-    src: url(${PoppinsBold});
+    font-family: 'RM';
+    src: url(${RobotoMedium});
     font-style: normal;
   }
   @font-face {
-    font-family: 'PSB';
-    src: url(${PoppinsSemiBold});
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'PM';
-    src: url(${PoppinsMedium});
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'PR';
-    src: url(${PoppinsRegular});
+    font-family: 'RR';
+    src: url(${RobotoRegular});
     font-style: normal;
   }
 `;
