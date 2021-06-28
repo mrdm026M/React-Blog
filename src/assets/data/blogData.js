@@ -1,10 +1,16 @@
+import one from "../images/article-1.jpg";
+import two from "../images/article-2.jpg";
+import three from "../images/article-3.jpg";
+import four from "../images/article-4.jpg";
+import five from "../images/article-5.jpg";
+
 const blogs = [
   {
     title: "My First Article",
     author: "Kevin Powell",
     date: "2021-05-01",
     tags: ["post", "featured", "latest"],
-    image: "",
+    image: one,
     imageAlt: "This is a test",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis accusantium sit illo neque rem omnis quaerat, nam similique vitae delectus ad magni vel quo maxime, magnam placeat. Reprehenderit, distinctio aliquam?",
@@ -16,7 +22,7 @@ const blogs = [
     author: "Kevin Powell",
     date: "2021-05-15",
     tags: ["post", "featured"],
-    image: "",
+    image: two,
     imageAlt: "This is a test",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis accusantium sit illo neque rem omnis quaerat, nam similique vitae delectus ad magni vel quo maxime, magnam placeat. Reprehenderit, distinctio aliquam?",
@@ -28,7 +34,7 @@ const blogs = [
     author: "Kevin Powell",
     date: "2021-05-28",
     tags: ["post", "featured"],
-    image: "",
+    image: three,
     imageAlt: "This is a test",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis accusantium sit illo neque rem omnis quaerat, nam similique vitae delectus ad magni vel quo maxime, magnam placeat. Reprehenderit, distinctio aliquam?",
@@ -40,7 +46,7 @@ const blogs = [
     author: "Kevin Powell",
     date: "2021-06-01",
     tags: ["post"],
-    image: "",
+    image: four,
     imageAlt: "This is a test",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis accusantium sit illo neque rem omnis quaerat, nam similique vitae delectus ad magni vel quo maxime, magnam placeat. Reprehenderit, distinctio aliquam?",
@@ -52,7 +58,7 @@ const blogs = [
     author: "Kevin Powell",
     date: "2021-06-15",
     tags: ["post", "featured"],
-    image: "",
+    image: five,
     imageAlt: "This is a test",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis accusantium sit illo neque rem omnis quaerat, nam similique vitae delectus ad magni vel quo maxime, magnam placeat. Reprehenderit, distinctio aliquam?",
