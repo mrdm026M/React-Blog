@@ -10,6 +10,7 @@ export const Hero = () => {
         if (blog.tags.includes("latest")) {
           return (
             <div
+              key={index}
               className="hero__section"
               style={{
                 backgroundImage: `url(${blog.image})`,
