@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   :root{
-    --bg-color : #f8f9fa;
+    --grey-0: #f8f9fa;
     --grey-100: #e9ecef;
     --grey-200: #dee2e6;
     --grey-300: #ced4da;
@@ -28,7 +28,8 @@ const GlobalStyles = createGlobalStyle`
   html{
     font-family: 'RR';
     font-size: 1rem;
-    background-color: var(--bg-color);
+    background-color: var(--grey-900);
+    color: var(--grey-0);
     height: 100%;
     cursor: context-menu;
   }
