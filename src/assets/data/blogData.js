@@ -9,7 +9,7 @@ const blogs = [
     title: "My First Article",
     author: "Kevin Powell",
     date: "2021-05-01",
-    tags: ["post", "featured", "latest"],
+    tags: ["post", "latest"],
     image: one,
     imageAlt: "This is a test",
     description:
