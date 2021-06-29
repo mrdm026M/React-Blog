@@ -1,0 +1,15 @@
+.site-footer {
+  padding: 1rem 0;
+  text-align: center;
+  background-color: var(--grey-700);
+
+  .nav-logo {
+    a {
+      font-size: 2.4rem;
+      font-family: "CB";
+      font-weight: 900;
+      letter-spacing: -0.084rem;
+      color: var(--grey-0);
+    }
+  }
+}
