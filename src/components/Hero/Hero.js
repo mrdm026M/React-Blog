@@ -16,21 +16,23 @@ export const Hero = () => {
                 backgroundImage: `url(${blog.image})`,
               }}
             >
-              <div class="hero__section__content">
-                <article className="post__snippet">
-                  <h1 class="snippet__title">
-                    <NavLink to="/">{blog.title}</NavLink>
-                  </h1>
-                  <p class="snippet__meta">
-                    by <span>{blog.author}</span> on <span>{blog.date}</span>
-                  </p>
-                  <p class="snippet__body">{blog.description}</p>
-                  <div className="hero__section__btn">
-                    <button className="btn__primary">
-                      <NavLink to="/">Continue Reading</NavLink>
-                    </button>
-                  </div>
-                </article>
+              <div className="bg-blend">
+                <div class="hero__section__content">
+                  <article className="post__snippet">
+                    <h1 class="snippet__title">
+                      <NavLink to="/">{blog.title}</NavLink>
+                    </h1>
+                    <p class="snippet__meta">
+                      by <span>{blog.author}</span> on <span>{blog.date}</span>
+                    </p>
+                    <p class="snippet__body">{blog.description}</p>
+                    <div className="hero__section__btn">
+                      <button className="btn__primary">
+                        <NavLink to="/">Continue Reading</NavLink>
+                      </button>
+                    </div>
+                  </article>
+                </div>
               </div>
             </div>
           );
