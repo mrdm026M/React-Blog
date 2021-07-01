@@ -1,0 +1,29 @@
+.recent-blog__section {
+  margin: 2.5rem 0;
+
+  .recent-blog__section-content {
+    padding: 0.75rem;
+
+    .content-header {
+      margin: 1.25rem 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .section-title {
+        padding: 0 2rem;
+        font-size: 2rem;
+        font-family: "CSB";
+        letter-spacing: 0.05rem;
+      }
+    }
+
+    .content-articles {
+      margin: 2rem 0.5rem;
+      padding: 1rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+  }
+}
