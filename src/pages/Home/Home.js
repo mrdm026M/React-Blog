@@ -1,4 +1,5 @@
 import React from "react";
+import { Categories } from "../../components/Categories/Categories";
 import { FeaturedBlog } from "../../components/FeaturedBlog/FeaturedBlog";
 import { Footer } from "../../components/Footer/Footer";
 import { Hero } from "../../components/Hero/Hero";
@@ -12,6 +13,7 @@ export const Home = () => {
         <Navbar />
         <main>
           <Hero />
+          <Categories />
           <FeaturedBlog />
         </main>
       </div>
