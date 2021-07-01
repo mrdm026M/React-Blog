@@ -8,9 +8,7 @@ export const FeaturedBlog = () => {
     <div className="featured__section">
       <div class="featured__section-content">
         <div className="content-header">
-          <hr />
           <h2 class="section-title">Featured Articles</h2>
-          <hr />
         </div>
         <div className="content-articles">
           {blogs.map((blog, index) => {
