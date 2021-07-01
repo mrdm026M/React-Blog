@@ -1,0 +1,52 @@
+.categories__section {
+  background-color: var(--grey-800);
+  border-radius: 20px;
+  margin: 4rem 0;
+
+  .categories {
+    padding: 0.75rem;
+
+    .content-header {
+      margin: 1.25rem 0.5rem 0.75rem 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .section-title {
+        padding: 0 2rem;
+        font-size: 2rem;
+        font-family: "CSB";
+        letter-spacing: 0.05rem;
+      }
+    }
+
+    .section-content {
+      margin: 0 4rem;
+      padding: 1rem 0;
+
+      ul {
+        margin: 0 10rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        li {
+          padding: 0.35rem 0rem;
+          border-radius: 8px;
+          background-color: var(--grey-700);
+
+          a {
+            border-radius: 8px;
+            padding: 0.35rem 1rem;
+            font-size: 1.2rem;
+            font-family: "RR";
+            letter-spacing: 0.05rem;
+            color: var(--grey-0);
+          }
+        }
+      }
+    }
+  }
+}
