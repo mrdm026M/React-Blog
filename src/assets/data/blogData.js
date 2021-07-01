@@ -9,7 +9,7 @@ const blogs = [
     title: "My First Article",
     author: "Kevin Powell",
     date: "2021-05-01",
-    tags: ["post", "latest"],
+    tags: ["post", "latest", "recent"],
     image: one,
     imageAlt: "This is a test",
     description:
@@ -33,7 +33,7 @@ const blogs = [
     title: "My Third Article",
     author: "Kevin Powell",
     date: "2021-05-28",
-    tags: ["post", "featured"],
+    tags: ["post", "featured", "recent"],
     image: three,
     imageAlt: "This is a test",
     description:
@@ -45,7 +45,7 @@ const blogs = [
     title: "My Fourth Article",
     author: "Kevin Powell",
     date: "2021-06-01",
-    tags: ["post"],
+    tags: ["post", "recent"],
     image: four,
     imageAlt: "This is a test",
     description:
@@ -57,7 +57,7 @@ const blogs = [
     title: "My Fifth Article",
     author: "Kevin Powell",
     date: "2021-06-15",
-    tags: ["post", "featured"],
+    tags: ["post", "featured", "recent"],
     image: five,
     imageAlt: "This is a test",
     description:
