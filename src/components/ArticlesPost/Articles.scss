@@ -1,4 +1,5 @@
 .articles {
+  border-radius: 20px;
   padding: 1rem;
   background-color: var(--grey-800);
   width: 25rem;
@@ -16,6 +17,10 @@
     border: none;
     border-radius: 50px;
     background-color: var(--grey-900);
+  }
+
+  img {
+    border-radius: 10px;
   }
 
   .snippet__content {
@@ -60,11 +65,12 @@
 
       .btn__primary {
         border: 2px solid var(--grey-0);
-        background-color: transparent;
-        padding: 0.45em 0em;
+        padding: 0.35rem 0em;
         background-color: var(--grey-0);
+        border-radius: 8px;
 
         a {
+          border-radius: 8px;
           padding: 0.45rem 1rem;
           font-size: 1rem;
           font-family: "RM";
