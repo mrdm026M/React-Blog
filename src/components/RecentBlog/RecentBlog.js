@@ -16,8 +16,8 @@ export const RecentBlog = () => {
               return (
                 <Articles
                   key={index}
-                  image={blog.image}
-                  imageAlt={blog.imageAlt}
+                  img={blog.image}
+                  imgAlt={blog.imageAlt}
                   title={blog.title}
                   author={blog.author}
                   date={blog.date}
