@@ -5,7 +5,8 @@
 3. Recent page (done)
 4. Footer (done)
 
-5. Create blog single page
-6. add firebase and firestore
-7. create admin/login page
-8. create online blog writer
+5. Create blog single page (done)
+6. add firebase
+7. add firestore
+8. create admin/login page
+9. create online blog writer
