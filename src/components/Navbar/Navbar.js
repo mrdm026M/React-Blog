@@ -18,12 +18,12 @@ export const Navbar = () => {
               <li>
                 <NavLink to="/recent">Recent</NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink to="/">Categories</NavLink>
               </li>
               <li>
                 <NavLink to="/">Featured</NavLink>
-              </li>
+              </li> */}
             </ul>
           </nav>
         </div>
