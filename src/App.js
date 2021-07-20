@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Home } from "../src/pages/Home/Home.js";
+import Home from "../src/pages/Home/Home.js";
 import ScrollToTop from "./components/StyledComponent/ScrollToTop";
 import { BlogPage } from "./pages/BlogPage/BlogPage.js";
-import { Recent } from "./pages/Recent/Recent.js";
+import Recent from "./pages/Recent/Recent.js";
 
 const App = () => {
   return (
