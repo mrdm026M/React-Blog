@@ -1,35 +1,32 @@
 import React from "react";
-import blogs from "../../assets/data/blogData";
 import { LatestPost } from "../LatestPost/LatestPost";
 import {} from "./Hero.scss";
 
-export const Hero = () => {
+function timeStampToString(ts) {
+  const date = new Date(ts * 1000);
+  return (
+    date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+  );
+}
+
+export const Hero = (props) => {
   return (
     <>
-      {blogs.map((blog, index) => {
-        if (blog.tags.includes("latest")) {
-          return (
-            <div
-              key={index}
-              className="hero__section"
-              style={{
-                backgroundImage: `url(${blog.image})`,
-              }}
-            >
-              <LatestPost
-                img={blog.image}
-                imgAlt={blog.imageAlt}
-                title={blog.title}
-                author={blog.author}
-                date={blog.date}
-                description={blog.description}
-              />
-            </div>
-          );
-        } else {
-          return null;
-        }
-      })}
+      {props.data.tags.includes("latest") ? (
+        <div
+          className="hero__section"
+          // style={{
+          //   backgroundImage: `url(${blog.image})`,
+          // }}
+        >
+          <LatestPost
+            title={props.data.title}
+            author={props.data.author}
+            date={timeStampToString(props.data.createDate.seconds)}
+            description={props.data.content}
+          />
+        </div>
+      ) : null}
     </>
   );
 };

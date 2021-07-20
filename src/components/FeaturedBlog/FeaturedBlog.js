@@ -1,9 +1,16 @@
 import React from "react";
-import blogs from "../../assets/data/blogData";
 import { Articles } from "../ArticlesPost/Articles";
 import "./FeaturedBlog.scss";
 
-export const FeaturedBlog = () => {
+function timeStampToString(ts) {
+  const date = new Date(ts * 1000);
+  return (
+    date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+  );
+}
+
+export const FeaturedBlog = (props) => {
+  console.log(props.data);
   return (
     <div className="featured__section">
       <div class="featured__section-content">
@@ -11,17 +18,17 @@ export const FeaturedBlog = () => {
           <h2 class="section-title">Featured Articles</h2>
         </div>
         <div className="content-articles">
-          {blogs.map((blog, index) => {
-            if (blog.tags.includes("featured")) {
+          {props.data.map((blog, index) => {
+            if (blog.tags.includes("featured") && index < 4) {
               return (
                 <Articles
                   key={index}
-                  img={blog.image}
-                  imgAlt={blog.imageAlt}
+                  // img={blog.image}
+                  // imgAlt={blog.imageAlt}
                   title={blog.title}
                   author={blog.author}
-                  date={blog.date}
-                  description={blog.description}
+                  date={timeStampToString(blog.createDate.seconds)}
+                  description={blog.content}
                 />
               );
             } else {
