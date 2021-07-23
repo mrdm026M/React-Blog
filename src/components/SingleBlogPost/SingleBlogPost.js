@@ -14,7 +14,7 @@ export const SingleBlogPost = ({
         <h1>{title}</h1>
       </div>
       <div className="author_date">
-        <p class="snippet__meta">
+        <p className="snippet__meta">
           by <span>{author}</span> on <span>{date}</span>
         </p>
       </div>
@@ -22,9 +22,7 @@ export const SingleBlogPost = ({
         <img src={img} alt="imageAlt" className="snippet__image" />
         <figcaption>This is a test</figcaption>
       </div>
-      <div className="description">
-        <p>{description}</p>
-      </div>
+      <div className="description">{description}</div>
     </div>
   );
 };

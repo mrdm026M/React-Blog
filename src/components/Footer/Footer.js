@@ -4,7 +4,7 @@ import "./Footer.scss";
 
 export const Footer = () => {
   return (
-    <footer class="site-footer">
+    <footer className="site-footer">
       <div className="nav-logo">
         <NavLink to="/">Blog.</NavLink>
       </div>

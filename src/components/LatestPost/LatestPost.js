@@ -2,35 +2,35 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./LatestPost.scss";
 
-export const LatestPost = ({
-  img = "",
-  imgAlt = "",
-  title = "latest title",
-  author = "latest author",
-  date = "latest date",
-  description = "latest description",
-}) => {
+function timeStampToString(ts) {
+  const date = new Date(ts * 1000);
+  return (
+    date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+  );
+}
+
+export const LatestPost = (props) => {
+  console.log(props.blog);
+
   const data = {
-    pathname: `/blog/${title}`,
-    title: `${title}`,
-    img: `${img}`,
-    imgAlt: `${imgAlt}`,
-    author: `${author}`,
-    date: `${date}`,
-    description: `${description}`,
+    pathname: "blog/" + props.blog.title,
+    state: {
+      article: props.blog,
+    },
   };
 
   return (
     <div className="bg-blend">
-      <div class="hero__section__content">
+      <div className="hero__section__content">
         <article className="post__snippet">
-          <h1 class="snippet__title">
-            <Link to={data}>{title}</Link>
+          <h1 className="snippet__title">
+            <Link to={data}>{props.blog.title}</Link>
           </h1>
-          <p class="snippet__meta">
-            by <span>{author}</span> on <span>{date}</span>
+          <p className="snippet__meta">
+            by <span>{props.blog.author}</span> on{" "}
+            <span>{timeStampToString(props.blog.createDate.seconds)}</span>
           </p>
-          <p class="snippet__body">{description}</p>
+          {/* <p class="snippet__body">{props.data.content}</p> */}
           <div className="hero__section__btn">
             <button className="btn__primary">
               <Link to={data}>Continue Reading</Link>

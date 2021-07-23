@@ -30,7 +30,7 @@ class Home extends Component {
           let allBlogs = [];
           docs.forEach(function (doc) {
             const blog = {
-              id: doc,
+              id: doc.id,
               ...doc.data(),
             };
             allBlogs.push(blog);
@@ -57,7 +57,6 @@ class Home extends Component {
           <main>
             {this.state.isLoaded
               ? this.state.blogs.map((blog, index) => {
-                  console.log(this.state.blogs);
                   return (
                     <>
                       <Hero key={index} data={blog} />

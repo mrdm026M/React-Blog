@@ -28,7 +28,7 @@ class Recent extends Component {
           let allBlogs = [];
           docs.forEach(function (doc) {
             const blog = {
-              id: doc,
+              id: doc.id,
               ...doc.data(),
             };
             allBlogs.push(blog);
