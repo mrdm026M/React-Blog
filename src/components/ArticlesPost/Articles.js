@@ -10,10 +10,8 @@ function timeStampToString(ts) {
 }
 
 export const Articles = (props) => {
-  console.log(props.blog);
-
   const data = {
-    pathname: "blog/" + props.blog.title,
+    pathname: "blog/" + props.blog.id + "/" + props.blog.title,
     state: {
       article: props.blog,
     },
@@ -22,7 +20,11 @@ export const Articles = (props) => {
   return (
     <div className="articles">
       <article className="snippet">
-        {/* <img src={img} alt={imgAlt} className="snippet__image" /> */}
+        <img
+          src={props.blog.featuredImg}
+          alt={props.blog.featuredImgText}
+          className="snippet__image"
+        />
         <div className="snippet__content">
           <h3 className="snippet__title">
             <Link to={data}>{props.blog.title}</Link>
@@ -31,7 +33,6 @@ export const Articles = (props) => {
             by <span>{props.blog.author}</span> on{" "}
             <span>{timeStampToString(props.blog.createDate.seconds)}</span>
           </p>
-          {/* <p className="snippet__body">{description}</p> */}
           <div className="hero__section__btn">
             <button className="btn__primary">
               <Link to={data}>Continue Reading</Link>

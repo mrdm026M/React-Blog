@@ -5,9 +5,9 @@ import "./FeaturedBlog.scss";
 export const FeaturedBlog = (props) => {
   return (
     <div className="featured__section">
-      <div class="featured__section-content">
+      <div className="featured__section-content">
         <div className="content-header">
-          <h2 class="section-title">Featured Articles</h2>
+          <h2 className="section-title">Featured Articles</h2>
         </div>
         <div className="content-articles">
           {props.data.map((blog, index) => {

@@ -8,9 +8,9 @@ export const Hero = (props) => {
       <>
         <div
           className="hero__section"
-          // style={{
-          //   backgroundImage: `url(${blog.image})`,
-          // }}
+          style={{
+            backgroundImage: `url(${props.data.featuredImg})`,
+          }}
         >
           <LatestPost blog={props.data} />
         </div>

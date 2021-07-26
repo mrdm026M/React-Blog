@@ -2,11 +2,12 @@ import React from "react";
 import "./SingleBlogPost.scss";
 
 export const SingleBlogPost = ({
-  title = "single blog post title",
-  img = "",
-  author = "single blog post author",
-  date = "single blog post date",
-  description = "single blog post description",
+  title = "title",
+  img = "/",
+  imgAlt = "imgAlt",
+  author = "author",
+  date = "date",
+  content = "content",
 }) => {
   return (
     <div className="single-blog-post__section">
@@ -19,10 +20,10 @@ export const SingleBlogPost = ({
         </p>
       </div>
       <div className="img_imgAlt">
-        <img src={img} alt="imageAlt" className="snippet__image" />
+        <img src={img} alt={imgAlt} className="snippet__image" />
         <figcaption>This is a test</figcaption>
       </div>
-      <div className="description">{description}</div>
+      <div className="description">{content}</div>
     </div>
   );
 };

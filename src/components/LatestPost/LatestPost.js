@@ -10,10 +10,8 @@ function timeStampToString(ts) {
 }
 
 export const LatestPost = (props) => {
-  console.log(props.blog);
-
   const data = {
-    pathname: "blog/" + props.blog.title,
+    pathname: "blog/" + props.blog.id + "/" + props.blog.title,
     state: {
       article: props.blog,
     },
@@ -30,7 +28,6 @@ export const LatestPost = (props) => {
             by <span>{props.blog.author}</span> on{" "}
             <span>{timeStampToString(props.blog.createDate.seconds)}</span>
           </p>
-          {/* <p class="snippet__body">{props.data.content}</p> */}
           <div className="hero__section__btn">
             <button className="btn__primary">
               <Link to={data}>Continue Reading</Link>

@@ -5,7 +5,10 @@ import { withRouter } from "react-router-dom";
 import { Footer } from "../../components/Footer/Footer";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { SingleBlogPost } from "../../components/SingleBlogPost/SingleBlogPost";
+import firebase from "../../Config/Fire";
 import "./BlogPage.scss";
+
+const db = firebase.firestore();
 
 function timeStampToString(ts) {
   const date = new Date(ts * 1000);
@@ -21,7 +24,6 @@ class BlogPage extends Component {
       article: {},
       isLoaded: false,
     };
-    console.log(this.props);
   }
 
   componentDidMount() {
@@ -38,8 +40,32 @@ class BlogPage extends Component {
           }
         );
       }
+    } else {
+      this.getArticleByID(this.props.match.params.id);
     }
   }
+
+  getArticleByID = (aID) => {
+    db.collection("Articles")
+      .doc(aID)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          this.setState(
+            {
+              article: doc.data(),
+            },
+            () => {
+              this.setState({
+                isLoaded: true,
+              });
+            }
+          );
+        } else {
+          this.props.history.push({ pathname: "/" });
+        }
+      });
+  };
 
   render() {
     if (this.state.isLoaded) {
@@ -50,8 +76,10 @@ class BlogPage extends Component {
             <SingleBlogPost
               title={this.state.article.title}
               author={this.state.article.author}
+              img={this.state.article.featuredImg}
+              imgAlt={this.state.article.featuredImgText}
               date={timeStampToString(this.state.article.lastModified.seconds)}
-              description={parse(this.state.article.content)}
+              content={parse(this.state.article.content)}
             />
           </div>
           <Footer />
@@ -60,47 +88,14 @@ class BlogPage extends Component {
     } else {
       return (
         <>
-          <Navbar />
           <div className="blog-page__section">
+            <Navbar />
             <h1>Loading...</h1>
           </div>
           <Footer />
         </>
       );
     }
-    // console.log(this.state.article);
-    // if (this.state.isLoaded) {
-    //   return (
-    //     <SingleBlogPost
-    //       title={this.state.article.title}
-    //       //  img={img}
-    //       //  imgAlt={imgAlt}
-    //       author={this.state.article.author}
-    //       date={this.state.article.date}
-    //       // description={parse(this.state.article.content)}
-    //     />
-    //   );
-    // } else {
-    //   return <div>Loading....</div>;
-    // }
-    // return (
-    //   <>
-    //     <div className="blog-page__section">
-    //       <Navbar />
-    //       {/* <SingleBlogPost
-    //         title={this.props.location.title}
-    //         // img={img}
-    //         // imgAlt={imgAlt}
-    //         author={this.props.location.author}
-    //         date={this.props.location.date}
-    //         description={this.props.location.content}
-    //       />*/}
-    //       <h1>View Article</h1>
-    //       {/* <p>{this.props.location.title}</p> */}
-    //     </div>
-    //     <Footer />
-    //   </>
-    // );
   }
 }
 
