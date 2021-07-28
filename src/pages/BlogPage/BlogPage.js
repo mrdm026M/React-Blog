@@ -3,7 +3,7 @@ import parse from "html-react-parser";
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Footer } from "../../components/Footer/Footer";
-import { Navbar } from "../../components/Navbar/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import { SingleBlogPost } from "../../components/SingleBlogPost/SingleBlogPost";
 import firebase from "../../Config/Fire";
 import "./BlogPage.scss";

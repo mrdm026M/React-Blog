@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Footer } from "../../components/Footer/Footer";
-import { Navbar } from "../../components/Navbar/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import { RecentBlog } from "../../components/RecentBlog/RecentBlog";
 import firebase from "../../Config/Fire";
 import "./Recent.scss";
