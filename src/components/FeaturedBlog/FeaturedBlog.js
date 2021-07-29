@@ -12,7 +12,7 @@ export const FeaturedBlog = (props) => {
         <div className="content-articles">
           {props.data.map((blog, index) => {
             if (blog.tags.includes("featured") && index < 4) {
-              return <Articles blog={blog} />;
+              return <Articles blog={blog} key={index} />;
             } else {
               return null;
             }
