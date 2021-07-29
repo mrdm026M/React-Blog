@@ -18,6 +18,7 @@ const GlobalStyles = createGlobalStyle`
     --grey-800: #212529;
     --grey-900: #121519;
   }
+  
   body{
     overscroll-behavior-y: none;
     min-height: 100vh;
