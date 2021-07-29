@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import {} from "./NewBlog.scss";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import fire from "../../Config/Fire";
+
+const db = fire.firestore();
 
 export default class NewBlog extends Component {
   constructor(props) {
@@ -10,6 +13,8 @@ export default class NewBlog extends Component {
       article: {
         title: "",
         content: "",
+        author: "",
+        tags: [],
         createDate: new Date(),
         featuredImg: "",
         isPublished: false,
@@ -108,6 +113,17 @@ export default class NewBlog extends Component {
     });
   };
 
+  submitArticle = () => {
+    const article = this.state.article;
+    article.createUserID = this.props.auth.uid;
+    db.collection("Articles")
+      .add(article)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
   render() {
     return (
       <div className="newBlog__section">
@@ -152,9 +168,7 @@ export default class NewBlog extends Component {
             </div>
           </div>
           <div className="submit">
-            <button onClick={(e) => console.log(this.state.article)}>
-              Submit
-            </button>
+            <button onClick={(e) => this.submitArticle()}>Submit</button>
           </div>
         </div>
       </div>
