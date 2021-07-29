@@ -3,8 +3,34 @@ import {} from "./NewBlog.scss";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import fire from "../../Config/Fire";
+import Navbar from "../../components/Navbar/Navbar";
+import { v4 as uuidv4 } from "uuid";
+import Compressor from "compressorjs";
+// import { reject } from "async";
 
 const db = fire.firestore();
+const storageRef = fire.storage();
+
+// const toolbarOptions = [
+//   ["bold", "italic", "underline", "strike"], // toggled buttons
+//   ["blockquote", "code-block"],
+//   ["link", "image"],
+
+//   [{ header: 1 }, { header: 2 }], // custom button values
+//   [{ list: "ordered" }, { list: "bullet" }],
+//   [{ script: "sub" }, { script: "super" }], // superscript/subscript
+//   [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+//   [{ direction: "rtl" }], // text direction
+
+//   [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+//   [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+//   [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+//   [{ font: [] }],
+//   [{ align: [] }],
+
+//   ["clean"], // remove formatting button
+// ];
 
 export default class NewBlog extends Component {
   constructor(props) {
@@ -25,43 +51,31 @@ export default class NewBlog extends Component {
   }
 
   modules = {
+    // toolbar: toolbarOptions,
     toolbar: {
       container: [
-        [
-          {
-            header: "1",
-          },
-          {
-            header: "2",
-          },
-          {
-            font: [],
-          },
-        ],
-        [
-          {
-            size: [],
-          },
-        ],
-        ["bold", "italic", "underline", "strike", "blockquote"],
-        [
-          {
-            list: "ordered",
-          },
-          {
-            list: "bullet",
-          },
-          {
-            indent: "-1",
-          },
-          {
-            indent: "+1",
-          },
-        ],
+        ["bold", "italic", "underline", "strike"], // toggled buttons
+        ["blockquote", "code-block"],
         ["link", "image"],
-        ["clean"],
-        ["code-block"],
+
+        [{ header: 1 }, { header: 2 }], // custom button values
+        [{ list: "ordered" }, { list: "bullet" }],
+        [{ script: "sub" }, { script: "super" }], // superscript/subscript
+        [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+        [{ direction: "rtl" }], // text direction
+
+        [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+        [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+        [{ font: [] }],
+        [{ align: [] }],
+
+        ["clean"], // remove formatting button
       ],
+      handlers: {
+        image: () => this.quillImageCallBack(),
+      },
     },
     clipboard: {
       matchVisual: false,
@@ -95,6 +109,27 @@ export default class NewBlog extends Component {
     });
   };
 
+  onChangeArticleAuthor = (value) => {
+    this.setState({
+      article: {
+        ...this.state.article,
+        author: value,
+      },
+    });
+  };
+
+  addTags = (event) => {
+    if (event.key === "Enter") {
+      this.setState({
+        article: {
+          ...this.state.article,
+          tags: [...this.state.article.tags, event.target.value],
+        },
+      });
+      event.target.value = "";
+    }
+  };
+
   onChangeArticleContent = (value) => {
     this.setState({
       article: {
@@ -113,6 +148,77 @@ export default class NewBlog extends Component {
     });
   };
 
+  fileCompress = (file) => {
+    return new Promise((resolve, reject) => {
+      new Compressor(file, {
+        file: "File",
+        quality: 0.5,
+        maxHeight: 640,
+        maxWidth: 640,
+        success(file) {
+          return resolve({
+            success: true,
+            file: file,
+          });
+        },
+        error(err) {
+          return resolve({
+            success: false,
+            message: err.message,
+          });
+        },
+      });
+    });
+  };
+
+  quillImageCallBack = () => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.click();
+    input.onchange = async () => {
+      const file = input.files[0];
+      const compressState = await this.fileCompress(file);
+      if (compressState.success) {
+        const fileName = uuidv4();
+        storageRef
+          .ref()
+          .child("Articles/" + fileName)
+          .put(compressState.file)
+          .then(async (snapshot) => {
+            const downloadURL = await storageRef
+              .ref()
+              .child("Articles/" + fileName)
+              .getDownloadURL();
+            let quill = this.quill.getEditor();
+            const range = quill.getSelection(true);
+            quill.insertEmbed(range.index, "image", downloadURL);
+          });
+      }
+    };
+  };
+
+  uploadImageCallBack = (e) => {
+    return new Promise(async (resolve, reject) => {
+      const file = e.target.files[0];
+      const fileName = uuidv4();
+      storageRef
+        .ref()
+        .child("Articles/" + fileName)
+        .put(file)
+        .then(async (snapshot) => {
+          const downloadURL = await storageRef
+            .ref()
+            .child("Articles/" + fileName)
+            .getDownloadURL();
+          resolve({
+            success: true,
+            data: { link: downloadURL },
+          });
+        });
+    });
+  };
+
   submitArticle = () => {
     const article = this.state.article;
     article.createUserID = this.props.auth.uid;
@@ -127,6 +233,7 @@ export default class NewBlog extends Component {
   render() {
     return (
       <div className="newBlog__section">
+        <Navbar />
         <div className="newBlog__content">
           <div className="heading">
             <h2> New Blog </h2>
@@ -143,10 +250,43 @@ export default class NewBlog extends Component {
                 value={this.state.article.title}
               />
             </div>
+
+            <div className="newBlog__author">
+              <label className="newBlogAuthor"> Blog Author </label>
+              <input
+                type="text"
+                name="newBlogAuthor"
+                id="newBlogAuthor"
+                placeholder=""
+                onChange={(e) => this.onChangeArticleAuthor(e.target.value)}
+                value={this.state.article.author}
+              />
+            </div>
+
+            <div className="newBlog__tags">
+              <label className="newBlogTags"> Blog Tags </label>
+              <ul>
+                {this.state.article.tags.map((tag) => {
+                  return (
+                    <li>
+                      <span>{tag}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+              <input
+                type="text"
+                name="newBlogTags"
+                id="newBlogTags"
+                placeholder="please enter to add tags"
+                onKeyUp={this.addTags}
+              />
+            </div>
+
             <div className="newBlog__content">
               <ReactQuill
                 ref={(e) => (this.quill = e)}
-                value={this.state.article.content}
+                value={this.state.article.content || ""}
                 onChange={(e) => this.onChangeArticleContent(e)}
                 theme="snow"
                 modules={this.modules}
@@ -166,6 +306,31 @@ export default class NewBlog extends Component {
                 <option value="true">True</option>
               </select>
             </div>
+
+            <div className="newBlog__image">
+              <label className="newBlogImage"> Image </label>
+              <input
+                type="file"
+                name="imageFile"
+                id="imageFile"
+                accept="image/*"
+                onChange={async (e) => {
+                  const uploadState = await this.uploadImageCallBack(e);
+                  if (uploadState.success) {
+                    this.setState({
+                      hasFeatureImage: true,
+                      article: {
+                        ...this.state.article,
+                        featuredImg: uploadState.data.link,
+                      },
+                    });
+                  }
+                }}
+              />
+            </div>
+            {this.state.hasFeatureImage ? (
+              <img src={this.state.article.featuredImg} alt="" />
+            ) : null}
           </div>
           <div className="submit">
             <button onClick={(e) => this.submitArticle()}>Submit</button>
