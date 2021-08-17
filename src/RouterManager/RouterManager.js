@@ -60,14 +60,12 @@ class RouterManager extends Component {
   }
 
   render() {
-    console.log(this.props.auth);
     return (
       <div>
         {this.props.auth.isLoaded ? (
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/recent" component={Recent} />
-            {/* <Route exact path="/newblog" component={NewBlog} /> */}
             <Route exact path="/blog/:id/:title" component={BlogPage} />
             <Route
               exact
