@@ -1,4 +1,4 @@
-# Home Page -
+## Important Tasks -
 
 1. Category Section (done)
 2. Featured Section (done)
@@ -17,3 +17,4 @@
 
 10. hero section button
 11. featured blog buttons
+12. editor ui update
