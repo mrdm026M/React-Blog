@@ -1,29 +1,37 @@
 .featured__section {
-  margin: 2.5rem 0;
+  margin: 3rem 0;
 
   .featured__section-content {
-    padding: 0.75rem;
+    // border: 2px solid green;
+    background-color: var(--grey-100);
+    margin: 0 3rem;
+    padding: 1rem 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .content-header {
-      margin: 1.25rem 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border: 2px solid var(--grey-900);
+      margin: 1rem 1rem;
+      padding: 0.5rem;
 
       .section-title {
-        padding: 0 2rem;
-        font-size: 2rem;
-        font-family: "CSB";
-        letter-spacing: 0.05rem;
+        line-height: 1;
+        font-size: 2.75rem;
+        font-family: "OB";
+        color: var(--grey-900);
       }
     }
 
     .content-articles {
-      margin: 2rem 0.5rem;
-      padding: 1rem;
+      // border: 2px solid red;
+      // margin: 2rem 0.5rem;
+      width: 100%;
+      padding: 1.5rem 1rem;
       display: flex;
+      flex-direction: column;
       gap: 1.5rem;
-      flex-wrap: wrap;
+      // flex-wrap: wrap;
     }
   }
 }
