@@ -1,5 +1,5 @@
 import React from "react";
-import { Articles } from "../ArticlesPost/Articles";
+import { Blogs } from "../BlogsPost/Blogs";
 import "./RecentBlog.scss";
 
 export const RecentBlog = (props) => {
@@ -13,7 +13,7 @@ export const RecentBlog = (props) => {
           <div className="content-articles">
             {props.data.map((blog) => {
               if (blog.tags.includes("recent")) {
-                return <Articles blog={blog} />;
+                return <Blogs blog={blog} />;
               } else {
                 return null;
               }
