@@ -29,8 +29,8 @@ const GlobalStyles = createGlobalStyle`
   html{
     font-family: 'RR';
     font-size: 1rem;
-    background-color: var(--grey-900);
-    color: var(--grey-0);
+    background-color: var(--grey-0);
+    color: var(--grey-900);
     height: 100%;
     cursor: context-menu;
   }
