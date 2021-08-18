@@ -1,29 +1,35 @@
 .recent-blog__section {
-  margin: 2.5rem 0;
+  // border: 2px solid red;
+  margin: 1.5rem 3rem;
 
   .recent-blog__section-content {
-    padding: 0.75rem;
+    // border: 2px solid red;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .content-header {
-      margin: 1.25rem 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border: 2px solid var(--grey-900);
+      margin: 1rem 1rem;
+      padding: 0.5rem;
 
       .section-title {
-        padding: 0 2rem;
-        font-size: 2rem;
-        font-family: "CSB";
-        letter-spacing: 0.05rem;
+        line-height: 1;
+        font-size: 2.75rem;
+        font-family: "OB";
+        color: var(--grey-900);
       }
     }
 
-    .content-articles {
-      margin: 2rem 0.5rem;
-      padding: 1rem;
+    .content-blogs {
+      // border: 2px solid blue;
+      margin: 2rem 0rem;
+      width: 100%;
+      padding: 1.5rem 5rem;
       display: flex;
+      flex-direction: column;
       gap: 1.5rem;
-      flex-wrap: wrap;
     }
   }
 }

@@ -8,9 +8,9 @@ export const RecentBlog = (props) => {
       <div className="recent-blog__section">
         <div className="recent-blog__section-content">
           <div className="content-header">
-            <h2 className="section-title">Recent Articles</h2>
+            <h2 className="section-title">Recent Blogs</h2>
           </div>
-          <div className="content-articles">
+          <div className="content-blogs">
             {props.data.map((blog) => {
               if (blog.tags.includes("recent")) {
                 return <Blogs blog={blog} />;

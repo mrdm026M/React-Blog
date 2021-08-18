@@ -32,18 +32,21 @@
 
       span {
         font-size: 1.25rem;
-        font-family: "DM";
+        font-family: "RR";
         font-weight: 500;
-        letter-spacing: 0.105rem;
-        word-spacing: 0.5rem;
+        letter-spacing: 0.05rem;
+        word-spacing: 0.05rem;
       }
     }
 
     .snippet__desc {
+      line-height: 1.4;
       margin: 1rem 0 0.5rem;
-      word-spacing: 0.1rem;
+      font-family: "RR";
       font-size: 1.15rem;
-      font-family: "DR";
+      font-weight: 500;
+      letter-spacing: 0.05rem;
+      word-spacing: 0.05rem;
       color: var(--grey-0);
     }
 

@@ -9,9 +9,9 @@ export const FeaturedBlog = (props) => {
         <div className="content-header">
           <h2 className="section-title">Featured Blogs</h2>
         </div>
-        <div className="content-articles">
+        <div className="content-blogs">
           {props.data.map((blog, index) => {
-            if (blog.tags.includes("featured") && index < 4) {
+            if (blog.tags.includes("featured")) {
               return <Blogs blog={blog} key={index} />;
             } else {
               return null;

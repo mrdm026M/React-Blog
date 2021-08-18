@@ -47,19 +47,20 @@
     color: var(--grey-900);
 
     span {
-      font-size: 1rem;
-      font-family: "DM";
-      font-weight: 600;
-      letter-spacing: 0.105rem;
+      font-size: 1.05rem;
+      font-family: "RR";
+      font-weight: 500;
+      letter-spacing: 0.015rem;
+      word-spacing: 0.05rem;
     }
   }
 
   .snippet__desc {
     grid-area: snippet__desc;
     margin: 0.25rem 0;
-    word-spacing: 0.1rem;
+    word-spacing: 0.025rem;
     font-size: 1.15rem;
-    font-family: "DM";
+    font-family: "RR";
     color: var(--grey-900);
   }
 
