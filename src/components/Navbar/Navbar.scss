@@ -2,18 +2,23 @@
   padding: 1rem 0;
 
   .page-navbar {
+    margin: 0 3rem;
+    padding: 0 1rem;
+
     .page-navbar__content {
       display: flex;
       align-items: center;
       justify-content: space-between;
 
       .nav-logo {
+        border: 2px solid var(--grey-900);
+        padding: 0.25rem;
+
         a {
-          font-size: 2.4rem;
-          font-family: "CB";
-          font-weight: 900;
-          letter-spacing: -0.084rem;
-          color: var(--grey-0);
+          line-height: 1;
+          font-size: 2.5rem;
+          font-family: "OB";
+          color: var(--grey-900);
         }
       }
 
@@ -22,22 +27,22 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 3.5rem;
+          gap: 3rem;
 
           li {
             a {
-              font-size: 1.14rem;
-              font-family: "RR";
+              font-size: 1.5rem;
+              font-family: "DM";
               font-weight: 500;
-              color: var(--grey-0);
-              letter-spacing: 0.09rem;
-              padding: 0.38rem 0;
+              color: var(--grey-900);
+              letter-spacing: 0.05rem;
+              padding: 0.5rem 0;
               position: relative;
 
               &:hover {
-                font-family: "RR";
+                font-family: "DM";
                 font-weight: 900;
-                color: var(--grey-0);
+                color: var(--grey-900);
 
                 &::after {
                   content: "";
@@ -49,7 +54,7 @@
                   right: 0;
                   bottom: 0;
                   margin: 0 auto;
-                  background-color: var(--grey-200);
+                  background-color: var(--grey-900);
                 }
               }
             }

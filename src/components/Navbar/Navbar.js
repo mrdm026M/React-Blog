@@ -28,7 +28,7 @@ class Navbar extends Component {
         <header className="page-navbar">
           <div className="page-navbar__content">
             <div className="nav-logo">
-              <NavLink to="/">Blog.</NavLink>
+              <NavLink to="/">TTP.</NavLink>
             </div>
             <nav className="nav">
               <ul className="nav-list">

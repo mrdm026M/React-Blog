@@ -3,6 +3,7 @@ import { LatestPost } from "../LatestPost/LatestPost";
 import {} from "./Hero.scss";
 
 export const Hero = (props) => {
+  console.log(props.data);
   if (props.data.tags.includes("latest")) {
     return (
       <>

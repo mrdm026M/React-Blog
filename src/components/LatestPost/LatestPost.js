@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./LatestPost.scss";
 
+// date conversion
 function timeStampToString(ts) {
   const date = new Date(ts * 1000);
   return (
@@ -25,12 +26,15 @@ export const LatestPost = (props) => {
             <Link to={data}>{props.blog.title}</Link>
           </h1>
           <p className="snippet__meta">
-            by <span>{props.blog.author}</span> on{" "}
+            <span>{props.blog.author}</span> |{" "}
             <span>{timeStampToString(props.blog.createDate.seconds)}</span>
+          </p>
+          <p className="snippet__desc">
+            <span>{props.blog.description}</span>
           </p>
           <div className="hero__section__btn">
             <button className="btn__primary">
-              <Link to={data}>Continue Reading</Link>
+              <Link to={data}>Read More</Link>
             </button>
           </div>
         </article>
