@@ -6,7 +6,6 @@ import fire from "../../Config/Fire";
 import Navbar from "../../components/Navbar/Navbar";
 import { v4 as uuidv4 } from "uuid";
 import Compressor from "compressorjs";
-// import { reject } from "async";
 
 const db = fire.firestore();
 const storageRef = fire.storage();
@@ -19,9 +18,11 @@ export default class NewBlog extends Component {
         title: "",
         content: "",
         author: "",
+        description: "",
         tags: [],
         createDate: new Date(),
         featuredImg: "",
+        featuredImgText: "",
         isPublished: false,
         lastModified: new Date(),
         createUserID: "",
@@ -30,7 +31,6 @@ export default class NewBlog extends Component {
   }
 
   modules = {
-    // toolbar: toolbarOptions,
     toolbar: {
       container: [
         ["bold", "italic", "underline", "strike"], // toggled buttons
@@ -79,6 +79,7 @@ export default class NewBlog extends Component {
     "code-block",
   ];
 
+  // title function
   onChangeArticleTitle = (value) => {
     this.setState({
       article: {
@@ -88,6 +89,7 @@ export default class NewBlog extends Component {
     });
   };
 
+  // author function
   onChangeArticleAuthor = (value) => {
     this.setState({
       article: {
@@ -97,6 +99,27 @@ export default class NewBlog extends Component {
     });
   };
 
+  // description function
+  onChangeArticleDescription = (value) => {
+    this.setState({
+      article: {
+        ...this.state.article,
+        description: value,
+      },
+    });
+  };
+
+  // img alt text function
+  onChangeArticleImageAltText = (value) => {
+    this.setState({
+      article: {
+        ...this.state.article,
+        featuredImgText: value,
+      },
+    });
+  };
+
+  // tags function
   addTags = (event) => {
     if (event.key === "Enter") {
       this.setState({
@@ -109,6 +132,7 @@ export default class NewBlog extends Component {
     }
   };
 
+  // content function
   onChangeArticleContent = (value) => {
     this.setState({
       article: {
@@ -118,6 +142,7 @@ export default class NewBlog extends Component {
     });
   };
 
+  // publish function
   onChangeArticlePublish = (value) => {
     this.setState({
       article: {
@@ -127,6 +152,7 @@ export default class NewBlog extends Component {
     });
   };
 
+  // img compress
   fileCompress = (file) => {
     return new Promise((resolve, reject) => {
       new Compressor(file, {
@@ -150,6 +176,7 @@ export default class NewBlog extends Component {
     });
   };
 
+  // image function
   quillImageCallBack = () => {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
@@ -177,6 +204,7 @@ export default class NewBlog extends Component {
     };
   };
 
+  // upload img function
   uploadImageCallBack = (e) => {
     return new Promise(async (resolve, reject) => {
       const file = e.target.files[0];
@@ -198,121 +226,181 @@ export default class NewBlog extends Component {
     });
   };
 
+  // submit function
   submitArticle = () => {
     const article = this.state.article;
     article.createUserID = this.props.auth.uid;
     db.collection("Articles")
       .add(article)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
+        alert("Blog Published successfully");
       })
       .catch((err) => console.log(err));
   };
 
   render() {
     return (
-      <div className="newBlog__section">
+      <div className="NewBlog__Editor">
         <Navbar />
-        <div className="newBlog__content">
+        <div className="NewBlog__Editor__content">
+          {/* heading */}
           <div className="heading">
-            <h2> New Blog </h2>
+            <h2>Write a new Blog!</h2>
           </div>
-          <div className="newBlog__main_content">
-            <div className="newBlog__title">
-              <label className="newBlogTitle"> Blog Title </label>
-              <input
-                type="text"
-                name="newBlogTitle"
-                id="newBlogTitle"
-                placeholder=""
-                onChange={(e) => this.onChangeArticleTitle(e.target.value)}
-                value={this.state.article.title}
-              />
-            </div>
 
-            <div className="newBlog__author">
-              <label className="newBlogAuthor"> Blog Author </label>
-              <input
-                type="text"
-                name="newBlogAuthor"
-                id="newBlogAuthor"
-                placeholder=""
-                onChange={(e) => this.onChangeArticleAuthor(e.target.value)}
-                value={this.state.article.author}
-              />
-            </div>
+          {/* editor */}
+          <div className="editor__content">
+            <div className="main__content">
+              {/* title */}
+              <div className="title">
+                <label className="NewBlog__Title">Title</label>
+                <input
+                  type="text"
+                  name="NewBlog__Title"
+                  id="NewBlog__Title"
+                  // placeholder=""
+                  onChange={(e) => this.onChangeArticleTitle(e.target.value)}
+                  value={this.state.article.title}
+                />
+              </div>
 
-            <div className="newBlog__tags">
-              <label className="newBlogTags"> Blog Tags </label>
-              <ul>
-                {this.state.article.tags.map((tag) => {
-                  return (
-                    <li>
-                      <span>{tag}</span>
-                    </li>
-                  );
-                })}
-              </ul>
-              <input
-                type="text"
-                name="newBlogTags"
-                id="newBlogTags"
-                placeholder="please enter to add tags"
-                onKeyUp={this.addTags}
-              />
-            </div>
+              <div className="author__tags">
+                {/* author */}
+                <div className="author">
+                  <label className="NewBlog__Author">Author</label>
+                  <input
+                    type="text"
+                    name="NewBlog__Author"
+                    id="NewBlog__Author"
+                    // placeholder=""
+                    onChange={(e) => this.onChangeArticleAuthor(e.target.value)}
+                    value={this.state.article.author}
+                  />
+                </div>
 
-            <div className="newBlog__content">
-              <ReactQuill
-                ref={(e) => (this.quill = e)}
-                value={this.state.article.content || ""}
-                onChange={(e) => this.onChangeArticleContent(e)}
-                theme="snow"
-                modules={this.modules}
-                formats={this.formats}
-              />
-            </div>
-          </div>
-          <div className="newBlog__publish_section">
-            <div className="newBlog__publish">
-              <label className="newBlogPublish"> Publish </label>
-              <select
-                name="newBlogPublish"
-                id="newBlogPublish"
-                onChange={(e) => this.onChangeArticlePublish(e.target.value)}
-              >
-                <option value="false">False</option>
-                <option value="true">True</option>
-              </select>
-            </div>
+                {/* tags */}
+                <div className="tags">
+                  <label className="NewBlog__Tags">Tags</label>
+                  <input
+                    type="text"
+                    name="NewBlog__Tags"
+                    id="NewBlog__Tags"
+                    placeholder="press enter to add tags"
+                    onKeyUp={this.addTags}
+                  />
+                  <ul>
+                    {this.state.article.tags.map((tag) => {
+                      return (
+                        <li>
+                          <span>{tag}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
 
-            <div className="newBlog__image">
-              <label className="newBlogImage"> Image </label>
-              <input
-                type="file"
-                name="imageFile"
-                id="imageFile"
-                accept="image/*"
-                onChange={async (e) => {
-                  const uploadState = await this.uploadImageCallBack(e);
-                  if (uploadState.success) {
-                    this.setState({
-                      hasFeatureImage: true,
-                      article: {
-                        ...this.state.article,
-                        featuredImg: uploadState.data.link,
-                      },
-                    });
+              {/* description */}
+              <div className="description">
+                <label className="NewBlog__Description">Description</label>
+                <input
+                  type="text"
+                  name="NewBlog__Description"
+                  id="NewBlog__Description"
+                  // placeholder=""
+                  onChange={(e) =>
+                    this.onChangeArticleDescription(e.target.value)
                   }
-                }}
-              />
+                  value={this.state.article.description}
+                />
+              </div>
+
+              {/* content */}
+              <div className="content">
+                <ReactQuill
+                  ref={(e) => (this.quill = e)}
+                  value={this.state.article.content || ""}
+                  onChange={(e) => this.onChangeArticleContent(e)}
+                  theme="snow"
+                  modules={this.modules}
+                  formats={this.formats}
+                />
+              </div>
+
+              {/* image atl text */}
+              <div className="imageAltText">
+                <label className="NewBlog__ImageAltText">
+                  Image Description
+                </label>
+                <input
+                  type="text"
+                  name="NewBlog__ImageAltText"
+                  id="NewBlog__ImageAltText"
+                  // placeholder=""
+                  onChange={(e) =>
+                    this.onChangeArticleImageAltText(e.target.value)
+                  }
+                  value={this.state.article.featuredImgText}
+                />
+              </div>
+
+              {/* image */}
+              <div className="image">
+                <label className="NewBlog__Image">Image</label>
+                <input
+                  type="file"
+                  name="imageFile"
+                  id="imageFile"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    const uploadState = await this.uploadImageCallBack(e);
+                    if (uploadState.success) {
+                      this.setState({
+                        hasFeatureImage: true,
+                        article: {
+                          ...this.state.article,
+                          featuredImg: uploadState.data.link,
+                        },
+                      });
+                    }
+                  }}
+                />
+              </div>
             </div>
-            {this.state.hasFeatureImage ? (
-              <img src={this.state.article.featuredImg} alt="" />
-            ) : null}
-          </div>
-          <div className="submit">
-            <button onClick={(e) => this.submitArticle()}>Submit</button>
+            <hr />
+            {/* submit */}
+            <div className="publish__blog">
+              <div className="publish__section">
+                {/* publish */}
+                <div className="publish">
+                  <label className="NewBlog__Publish">Publish</label>
+                  <select
+                    name="NewBlog__Publish"
+                    id="NewBlog__Publish"
+                    onChange={(e) =>
+                      this.onChangeArticlePublish(e.target.value)
+                    }
+                  >
+                    <option value="false">False</option>
+                    <option value="true">True</option>
+                  </select>
+                </div>
+
+                {/* image preview */}
+                {this.state.hasFeatureImage ? (
+                  <img
+                    src={this.state.article.featuredImg}
+                    alt={this.state.article.featuredImgText}
+                  />
+                ) : null}
+              </div>
+
+              {/* submit button */}
+              <div className="submit">
+                <button onClick={(e) => this.submitArticle()}>Submit</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
